@@ -81,3 +81,13 @@ Now the entire point of doing this is to automate this so we never have to touch
    0 0 * * 6 root (/bin/date && /path/to/pan-cert-renew.sh) >> /var/log/pan-cert-renew.log 2>&1
    ```
 3. Be aware of renewal limts! See the official documentation outlining those [here](https://letsencrypt.org/docs/rate-limits/).
+
+## Bulk Script
+This is a modified version of the main script that will loop through tags stored in the .panrc file by default. Optionally, you can create a text file of specific .panrc tag names (one per line) like below:
+```
+#Gets all tags used in .panrc file for target firewalls
+#TAGS=$(cat .panrc | grep hostname | awk -F % '{print $2}' | awk -F = '{print $1}')
+
+#OR set TAGS to custom text file containing list of specific .panrc tag names
+TAGS=$(cat firewalls.txt)
+```
