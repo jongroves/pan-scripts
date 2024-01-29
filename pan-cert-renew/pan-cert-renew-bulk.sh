@@ -23,14 +23,14 @@ GP_GW_TLS_PROFILE=gp1-gw-tls-profile
 #Request wildcard cert update from Cloudflare
 sudo /usr/local/bin/certbot certonly --dns-cloudflare --dns-cloudflare-credentials $CLOUDFLARE_CREDS -d *.$FQDN -n --agree-tos --force-renew
 
-for TAG in $TAGS; do
+#Convert full chain and private key into PFX cert for upload to Palo Alto firewall
+sudo openssl pkcs12 -export \
+  -out letsencrypt_pkcs12.pfx \
+  -inkey /etc/letsencrypt/live/$FQDN/privkey.pem \
+  -in /etc/letsencrypt/live/$FQDN/fullchain.pem \
+  -passout pass:$TEMP_PWD
 
-    #Convert full chain and private key into PFX cert for upload to Palo Alto firewall
-    sudo openssl pkcs12 -export \
-      -out letsencrypt_pkcs12.pfx \
-      -inkey /etc/letsencrypt/live/$FQDN/privkey.pem \
-      -in /etc/letsencrypt/live/$FQDN/fullchain.pem \
-      -passout pass:$TEMP_PWD
+for TAG in $TAGS; do
 
     #Import PFX cert into firewall
     panxapi.py -t $TAG \
