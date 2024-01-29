@@ -1,5 +1,5 @@
 # PAN-SCRIPTS README
-The scripts in this repo are some I've made to automate processes on Palo Alto firewalls. Hopefully this can help others out there who manage these awesome firewalls on a day to day basis. 
+The scripts in this repo are some I've made to automate processes on Palo Alto firewalls. Hopefully this can help others out there who manage these awesome firewalls on a day to day basis! 
 
 ## Requirements
 The following requirements are needed for most (if not all) of the above scripts. Additional requirements will be noted inside of the specific script folders if needed. 
@@ -32,3 +32,8 @@ hostname%PA-VM-01=10.255.255.50
 api_key%PA-VM-01=LUFRPT0xVlJmZHBaVmNDLzEveXBsR3ptVk5uSWw3ejA9S0FDR...
 ```
 Repeat the command for all firewalls you would like to automate actions for so that all keys and hostnames are stored in the .panrc file.
+
+Finally modify permissions of the .panrc file to ensure it can only be accessed by your user:
+```
+chmod 600 .panrc
+```
