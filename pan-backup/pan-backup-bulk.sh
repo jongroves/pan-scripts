@@ -18,11 +18,11 @@ for TAG in $TAGS; do
 
     #Check to see if $TAG directory exists. If not, create it.
     if [ ! -d "$TAG_DIR" ]; then
-        echo "Directory $TAG_DIR does not exist. Creating..."
+        #echo "Directory $TAG_DIR does not exist. Creating..."
         mkdir "$TAG_DIR"
     fi
 
-    echo "Getting device-state export for tag $TAG"
+    #echo "Getting device-state export for tag $TAG"
 
     #exported file parameters
     FILENAME=device_state_cfg-$(date +"%Y%m%d-%H%M%S").tgz
