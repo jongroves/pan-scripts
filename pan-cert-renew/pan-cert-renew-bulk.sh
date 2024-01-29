@@ -3,7 +3,7 @@
 #Requirements: openssl, pan-python, certbot, .panrc file in current directory
 
 #Gets all tags used in .panrc file for target firewalls
-TAGS=$(cat .panrc | grep hostname | awk -F % '{print $2}' | awk -F = '{print $1}')
+TAGS=$(cat .panrc | grep hostname | awk -F '%|=' '{print $2}')
 
 #OR set TAGS to custom text file containing list of specific .panrc tag names
 #TAGS=$(cat firewalls.txt)
